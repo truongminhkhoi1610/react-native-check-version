@@ -1,5 +1,6 @@
 import { Platform, NativeModules } from 'react-native';
 import pkg from './package.json';
+import axios from 'axios'
 
 const DEFAULT_ENDPOINT = 'https://versionservice.now.sh';
 
@@ -26,8 +27,7 @@ export const checkVersion = (options = {}) => {
         const url = `${options.endpoint}/${options.platform}/${options.bundleId}/${options.currentVersion}`;
 
         // Do the actual request
-        fetch(url, {
-            method: 'GET',
+        axios.get(url, {
             headers: {
                 'Accept': 'application/json',
                 'X-Source': `${pkg.name}@${pkg.version}`
