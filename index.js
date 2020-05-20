@@ -33,11 +33,7 @@ export const checkVersion = (options = {}) => {
                 'X-Source': `${pkg.name}@${pkg.version}`
             }
         })
-            .then((response) => {
-                return response.json()
-                    .then((body) => resolve(body))
-                    .catch((err) => reject(err));
-            })
+            .then((response) => resolve(response.data))
             .catch((err) => reject(err));
     });
 };
